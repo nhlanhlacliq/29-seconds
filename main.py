@@ -1,6 +1,7 @@
+from nltk.probability import FreqDist
 import requests
 import bs4
-from nltk.tokenize import sent_tokenize
+from nltk.tokenize import sent_tokenize, word_tokenize
 from gensim.summarization import summarize
 import re
 
@@ -20,35 +21,78 @@ from wordcloud import WordCloud, STOPWORDS
 from data import InfoDatabase
 import random
 from time import sleep
+import nltk
+from nltk.corpus import stopwords
+from PIL import Image
+from tkinter import *      
+
+"""'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
 """Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
-def generate_wordcloud(time_to_answer, category, question):
-  
+def generate_wordcloud(time_to_answer, category, question, difficulty_level):
+  # 
+  words_freq_dist = {}
+  # plt.figure(2)
+  stops = set(stopwords.words('english')) #Set used for speed
+  more_stops= STOPWORDS
+  # will need this for plotting too
+  words_in_question = [word for word in nltk.word_tokenize(question) if ((word not in stops) and (word not in more_stops))]
+  words_freq_dist = nltk.FreqDist(words_in_question)
 
-  stopwords = STOPWORDS
-  # stopwords.update(['Lil Wayne', 'Static Major', 'Lollipop', 'Lil', 'Wayne', 'Static', 'Major', 'Tanya',
-  #                   'trisolaris','trisolaran','moby','dick','macbeth','othello','harry','potter','hermione','voldemort',
-  #                   'hobbit','saitama','Goku','Vegeta','Frieza','Dragon Balls','Gatsby','','',])
+  # remove {difficulty level} most counted words, add to clues list
+  clues = []
+  for i in range(difficulty_level):
+    clues.append(words_freq_dist.pop(words_freq_dist.max()))
+  # print(f"These would be the clues {clues}")
+
+  difficulty_adjusted_question = ''
+  for word in words_freq_dist.keys():
+    difficulty_adjusted_question += word + ' '
+
+  # words_freq_dist.pprint()
+  # print(difficulty_adjusted_question)
+  # more_stops.update(['Lil Wayne', 'Static Major', 'Lollipop', 'Lil', 'Wayne', 'Static', 'Major', 'Tanya',
+                    # 'trisolaris','trisolaran','moby','dick','macbeth','othello','harry','potter','hermione','voldemort',
+                    # 'hobbit','saitama','Goku','Vegeta','Frieza','Dragon Balls','Gatsby','','',])
 
   wc = WordCloud(max_words=500,relative_scaling=0.5,
-                background_color='white',stopwords=stopwords,
-                margin=2,random_state=7,contour_width=0.5,
-                contour_color='brown', colormap='copper').generate(question)
-  print(wc)
+                background_color='black',stopwords=more_stops,
+                margin=2,random_state=8,contour_width=0.5,
+                contour_color='white', colormap='copper')
+  
+  wc.generate(difficulty_adjusted_question)
+  # print(wc)
   colors = wc.to_array()
 
+  # plotting frequency distribution of words in question synopsis.. not really needed. I just wanted to see..
+  # words_freq_dist.plot(15, linestyle='-', title="LOL words")
+  # plt.legend()
+
+  plt.ion()
   plt.figure()
   plt.title(f"Which {category} is this?\n",
   fontsize=15, color='black')
   plt.imshow(colors, interpolation="bilinear")
   plt.axis('off')
-  plt.show()
+  # plt.show(block=True)
+  plt.savefig('WC.png')
+  # wc_image = Image.open('WC.png')
+  # wc_image.show()
+
+  root = Tk()      
+  canvas = Canvas(root, width = 300, height = 300)      
+  canvas.pack()      
+  img = PhotoImage(file="WC.png")      
+  canvas.create_image(20,20, anchor=NW, image=img)      
+  mainloop() 
+
   sleep(time_to_answer)
-  plt.close()
-  ##plt.savefig('hound_wordcloud.png')
+  print("Eyh!!!")
+  plt.close(1)
 
 """Gets user category choice. returns category, with a random question and answer from that category """
 def setup() -> set:
+  # Get user catagory choice
   while True:
     category_choice = input("""
     Choose catergory:
@@ -64,6 +108,14 @@ def setup() -> set:
   categories_menu = {1: 'anime', 2: 'book'}
   chosen_category = categories_menu[int(category_choice)]
 
+  # Get difficulty level
+  while True:
+    difficulty_level = input("Difficulty level (0 - 4):\n> ")
+    if difficulty_level.isdigit() and -1 < int(category_choice) < 5:
+      break
+    else:
+      print("\nTry again (0 - 4).\n")
+
   # getattr essentially calls the menthod using the chosen category(they have the same name)
   category_dict_method_to_call = getattr(InfoDatabase, chosen_category)
   category_dict = category_dict_method_to_call()
@@ -71,7 +123,7 @@ def setup() -> set:
   question = choice_from_category_dict[1]
   actual_answer = choice_from_category_dict[0]
 
-  return chosen_category, question, actual_answer
+  return chosen_category, question, actual_answer, int(difficulty_level)
 
 """Displays choices"""
 def show_options(chosen_category):
@@ -83,8 +135,8 @@ def get_answer(actual_answer):
 
 """main method"""
 def main(time_to_answer):
-  chosen_category, question, actual_answer = setup()
-  generate_wordcloud(time_to_answer, chosen_category, question)
+  chosen_category, question, actual_answer, difficulty_level = setup()
+  generate_wordcloud(time_to_answer, chosen_category, question, difficulty_level)
 
 if __name__ == '__main__':
-  main(15)
+  main(3)
