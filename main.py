@@ -24,7 +24,6 @@ from time import sleep
 import nltk
 from nltk.corpus import stopwords
 from PIL import Image
-from tkinter import *      
 
 """'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
@@ -74,17 +73,10 @@ def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   fontsize=15, color='black')
   plt.imshow(colors, interpolation="bilinear")
   plt.axis('off')
-  # plt.show(block=True)
-  plt.savefig('WC.png')
+  plt.show(block=True)
+  # plt.savefig('WC.png')
   # wc_image = Image.open('WC.png')
   # wc_image.show()
-
-  root = Tk()      
-  canvas = Canvas(root, width = 300, height = 300)      
-  canvas.pack()      
-  img = PhotoImage(file="WC.png")      
-  canvas.create_image(20,20, anchor=NW, image=img)      
-  mainloop() 
 
   sleep(time_to_answer)
   print("Eyh!!!")
