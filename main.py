@@ -19,27 +19,32 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 from data import InfoDatabase
 import random
+from time import sleep
 
 """Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
-def generate_wordcloud():
-  chosen_category, question, actual_answer = setup()
+def generate_wordcloud(time_to_answer, category, question):
+  
 
   stopwords = STOPWORDS
-  stopwords.update(['Lil Wayne', 'Static Major', 'Lollipop', 'Lil', 'Wayne', 'Static', 'Major', 'Tanya'])
+  # stopwords.update(['Lil Wayne', 'Static Major', 'Lollipop', 'Lil', 'Wayne', 'Static', 'Major', 'Tanya',
+  #                   'trisolaris','trisolaran','moby','dick','macbeth','othello','harry','potter','hermione','voldemort',
+  #                   'hobbit','saitama','Goku','Vegeta','Frieza','Dragon Balls','Gatsby','','',])
 
   wc = WordCloud(max_words=500,relative_scaling=0.5,
                 background_color='white',stopwords=stopwords,
                 margin=2,random_state=7,contour_width=0.5,
                 contour_color='brown', colormap='copper').generate(question)
-
+  print(wc)
   colors = wc.to_array()
 
   plt.figure()
-  plt.title(f"Which {chosen_category} is this?\n",
+  plt.title(f"Which {category} is this?\n",
   fontsize=15, color='black')
   plt.imshow(colors, interpolation="bilinear")
   plt.axis('off')
   plt.show()
+  sleep(time_to_answer)
+  plt.close()
   ##plt.savefig('hound_wordcloud.png')
 
 """Gets user category choice. returns category, with a random question and answer from that category """
@@ -68,9 +73,18 @@ def setup() -> set:
 
   return chosen_category, question, actual_answer
 
+"""Displays choices"""
+def show_options(chosen_category):
+  pass
+
+"""Gets and compares user answer to actual answer"""
+def get_answer(actual_answer):
+  pass
+
 """main method"""
-def main():
-  generate_wordcloud()
+def main(time_to_answer):
+  chosen_category, question, actual_answer = setup()
+  generate_wordcloud(time_to_answer, chosen_category, question)
 
 if __name__ == '__main__':
-  main()
+  main(15)
