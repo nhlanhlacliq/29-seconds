@@ -20,7 +20,8 @@ from wordcloud import WordCloud, STOPWORDS
 from data import InfoDatabase
 import random
 
-def main():
+"""Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
+def generate_wordcloud():
   chosen_category, question, actual_answer = setup()
 
   stopwords = STOPWORDS
@@ -41,8 +42,8 @@ def main():
   plt.show()
   ##plt.savefig('hound_wordcloud.png')
 
-def setup():
-  
+"""Gets user category choice. returns category, with a random question and answer from that category """
+def setup() -> set:
   while True:
     category_choice = input("""
     Choose catergory:
@@ -55,22 +56,21 @@ def setup():
       break
     else:
       print("\nInput must be a number.\n")
-  categories_menu = {1: 'anime', 
-  2: 'books'}
+  categories_menu = {1: 'anime', 2: 'book'}
   chosen_category = categories_menu[int(category_choice)]
 
-  # as you can see getattr essentially calls the menthod
+  # getattr essentially calls the menthod using the chosen category(they have the same name)
   category_dict_method_to_call = getattr(InfoDatabase, chosen_category)
   category_dict = category_dict_method_to_call()
   choice_from_category_dict = random.choice(list(category_dict.items()))
   question = choice_from_category_dict[1]
   actual_answer = choice_from_category_dict[0]
 
-  # print(actual_answer)
   return chosen_category, question, actual_answer
 
-
-
+"""main method"""
+def main():
+  generate_wordcloud()
 
 if __name__ == '__main__':
   main()
