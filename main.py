@@ -73,14 +73,14 @@ def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   fontsize=15, color='black')
   plt.imshow(colors, interpolation="bilinear")
   plt.axis('off')
-  plt.show(block=True)
+  plt.show()
   # plt.savefig('WC.png')
   # wc_image = Image.open('WC.png')
   # wc_image.show()
-
+  plt.pause(0.001)
   sleep(time_to_answer)
-  print("Eyh!!!")
   plt.close(1)
+  print("Time's up")
 
 """Gets user category choice. returns category, with a random question and answer from that category """
 def setup() -> set:
