@@ -19,11 +19,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 from data import InfoDatabase
+from datalist import InfoList
 import random
 from time import sleep
 import nltk
 from nltk.corpus import stopwords
 from PIL import Image
+import string
 
 """'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
@@ -126,18 +128,46 @@ def setup() -> set:
   return chosen_category, question, actual_answer, int(difficulty_level)
 
 """Displays choices"""
-def show_options(chosen_category):
-  pass
+def show_options(chosen_category, actual_answer):
+  options_list = getattr(InfoList, chosen_category)
+  options_list = options_list()
+  
+  options_to_display = []
+  options_to_display.append(actual_answer)
+  while len(options_to_display) < 4:
+    option_to_add = random.choice(options_list)
+    if option_to_add not in options_to_display:
+      options_to_display.append(option_to_add)
+  random.shuffle(options_to_display)
+  choices_menu = {}
+  for i in range(1, len(options_to_display) + 1):
+    choices_menu[i] = options_to_display.pop() 
+
+  print()
+  for option_num, option_name in choices_menu.items():
+    print(f"{option_num}: {string.capwords(option_name)}")
+
+  return choices_menu
 
 """Gets and compares user answer to actual answer"""
-def get_answer(actual_answer):
-  pass
+def get_answer(actual_answer, choices_menu):
+  while True:
+    user_answer = input("\n> ")
+    if user_answer.isdigit() and 0 < int(user_answer) < len(choices_menu) + 1:
+      break
+    else:
+      print("\nTry again\n")
+  if choices_menu[int(user_answer)] == actual_answer:
+    print("CORRECTO!")
+  else:
+    print("LOL")
 
 """main method"""
 def main(time_to_answer):
   chosen_category, question, actual_answer, difficulty_level = setup()
   generate_wordcloud(time_to_answer, chosen_category, question, difficulty_level)
-  show_options(chosen_category)
+  choices_menu = show_options(chosen_category, actual_answer)
+  get_answer(actual_answer, choices_menu)
 
 if __name__ == '__main__':
-  main(10)
+  main(5)
