@@ -67,10 +67,11 @@ def generate_wordcloud(time_limit, category, question, difficulty_level):
                     # 'trisolaris','trisolaran','moby','dick','macbeth','othello','harry','potter','hermione','voldemort',
                     # 'hobbit','saitama','Goku','Vegeta','Frieza','Dragon Balls','Gatsby','','',])
 
+  wc_rand_state = random.randint(7, 9)
   wc = WordCloud(max_words=500,relative_scaling=0.5,
                 background_color='black',stopwords=more_stops,
-                margin=2,random_state=8,contour_width=0.5,
-                contour_color='white', colormap='copper')
+                margin=2,random_state=wc_rand_state,contour_width=0.5,
+                contour_color='white', colormap='Accent')
   
   wc.generate(difficulty_adjusted_question)
   # print(wc)
