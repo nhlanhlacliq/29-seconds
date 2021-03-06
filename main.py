@@ -170,4 +170,5 @@ def main(time_to_answer):
   get_answer(actual_answer, choices_menu)
 
 if __name__ == '__main__':
-  main(5)
+  while True:
+    main(5)
