@@ -112,17 +112,6 @@ def setup() -> set:
   categories_menu = {1: 'anime', 2: 'book'}
   chosen_category = categories_menu[int(category_choice)]
 
-  # Get difficulty level
-  # deprecated
-  """
-  while True:
-    difficulty_level = input("Difficulty level (0 - 4):\n> ")
-    if difficulty_level.isdigit() and -1 < int(category_choice) < 5:
-      break
-    else:
-      print("\nTry again (0 - 4).\n")
-  """
-
   # getattr essentially calls the menthod using the chosen category(they have the same name)
   category_dict_method_to_call = getattr(InfoDatabase, chosen_category)
   category_dict = category_dict_method_to_call()
@@ -172,10 +161,31 @@ def get_answer(actual_answer, choices_menu, score, category):
   else:
     print("Hmm..")
     sleep(2)
-    print("Psych!")
+    print(f"Correct answer: {string.capwords(actual_answer)}")
     print("Game over")
     print(f"Score: {score.get_score()}")
     sys.exit(1)
+
+"""get time limit for questions"""
+def get_time_to_answer():
+  while True:
+    time_to_answer = input("Time limit: \n> ")
+    if time_to_answer.isdigit() and 0 < int(time_to_answer) < 30:
+      break
+    else:
+      print("Try again please. (1 - 29)")
+  return int(time_to_answer)
+
+"""get game difficulty level"""
+def get_difficulty_level():
+  while True:
+    difficulty_level = input("Difficulty level (0 - 5):\n> ")
+    if difficulty_level.isdigit() and -1 < int(difficulty_level) < 6:
+      break
+    else:
+      print("\nTry again (0 - 5).\n")
+  return int(difficulty_level)
+
 
 """main method"""
 def main(time_to_answer, difficulty, score):
@@ -186,8 +196,8 @@ def main(time_to_answer, difficulty, score):
   print(f"Score: {score.get_score()}")
 
 if __name__ == '__main__':
-  time_to_answer = 5
-  difficulty = 4
+  time_to_answer = get_time_to_answer()
+  difficulty = get_difficulty_level()
   score = Score()
   while True:
     main(time_to_answer, difficulty, score)
