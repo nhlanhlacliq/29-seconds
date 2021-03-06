@@ -155,16 +155,20 @@ def show_options(chosen_category, actual_answer):
   return choices_menu
 
 """Gets and compares user answer to actual answer"""
-def get_answer(actual_answer, choices_menu, score):
+def get_answer(actual_answer, choices_menu, score, category):
   while True:
     user_answer = input("\n> ")
     if user_answer.isdigit() and 0 < int(user_answer) < len(choices_menu) + 1:
       break
     else:
       print("\nTry again\n")
+
   if choices_menu[int(user_answer)] == actual_answer:
     print("CORRECTO!")
     score.add_point()
+    if category == 'book':
+      score.add_point()
+
   else:
     print("Hmm..")
     sleep(2)
@@ -178,7 +182,7 @@ def main(time_to_answer, difficulty, score):
   chosen_category, question, actual_answer = setup()
   generate_wordcloud(time_to_answer, chosen_category, question, difficulty)
   choices_menu = show_options(chosen_category, actual_answer)
-  get_answer(actual_answer, choices_menu, score)
+  get_answer(actual_answer, choices_menu, score, chosen_category)
   print(f"Score: {score.get_score()}")
 
 if __name__ == '__main__':
