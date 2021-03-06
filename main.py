@@ -1,34 +1,16 @@
-from nltk.probability import FreqDist
-import requests
-import bs4
-from nltk.tokenize import sent_tokenize, word_tokenize
-from gensim.summarization import summarize
-import re
-
-# url = 'https://www.lilwaynehq.com/lyrics/tha-carter-3/lollipop/'
-# page = requests.get(url)
-# page.raise_for_status()
-# soup = bs4.BeautifulSoup(page.text, 'html.parser')
-# p_elems = [element.text for element in soup.find_all('p')]
-# speech = ''.join(p_elems)
-# speech = re.sub(' rapper', ' wrapper', speech)
-# print(speech)
-
-
-import numpy as np
 import matplotlib.pyplot as plt
+from time import sleep
+from os import sys
+from nltk.probability import FreqDist
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
 from wordcloud import WordCloud, STOPWORDS
 import random
-from time import sleep
-import nltk
-from nltk.corpus import stopwords
-from PIL import Image
 import string
-from os import sys
-from datalist import DataList
-from score import Score
 from difficulty import Difficulty
+from datalist import DataList
 from summary import Summary
+from score import Score
 
 """'plot', 'synopsis', 'text' and 'summary' are all the same thing. basically the description text of the show/book/lyrics"""
 
@@ -52,8 +34,8 @@ def show_wordcloud(summary_object, difficulty_object):
   more_stops= STOPWORDS
   # will need this for plotting too
   # Make list of words in the summary. dont add word if its a stop word..
-  words_in_summary = [word for word in nltk.word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
-  words_freq_dist = nltk.FreqDist(words_in_summary)
+  words_in_summary = [word for word in word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
+  words_freq_dist = FreqDist(words_in_summary)
   # remove x = {difficulty level} most repeated words, add to clues list
   # clues not yet working.. returns int of word counts instead of actual word
   clues = []
