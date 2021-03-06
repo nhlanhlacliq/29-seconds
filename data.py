@@ -54,7 +54,38 @@ class InfoDatabase:
     Aoi fights Oga to avenge her two classmates, while Oga assumes that she wants to accept the role of becoming Beel's parent. At the same time, Nene wakes up in the infirmary and goes to warn Aoi of MK5's trap, which turns out to be Miwa's scheme. MK5, however, prevents anyone from interrupting Aoi and Oga's fight. Nene is about to get shot, but Natsume appears and fights with MK5 to allow Nene to tell Aoi. She was unfortunately too late, as Aoi seems to have defeated Oga, and she comes just in time for Miwa and Ikari to take over.
     Oga suddenly gets back up and defeats Ikari and Miwa with ease. It is then shown that Furuichi and Hilda have been watching the whole time. Oga, Furuichi, Hilda and baby Beel go to the beach in search of Tojo to hand baby Beel over to him, not knowing that this is a plot set up by Kanzaki and Himekawa, who want Tojo and Oga to crush each other. Aoi goes to the beach as well to warn Oga of Tojo's strength. Oga and the gang have troubles searching for Tojo and are sent on a wild goose chase. Oga decides to write a letter of challenge to Tojo and have Aoi pass it to him. Aoi attempts to tear it up, but one of Tojo's henchmen finds it. They are supposed to meet between the two rocks at 5 PM. Oga is confronted by the MK5 once again, but quickly defeats them and arrives late. Tojo has left after crushing several motorcycle gangs, which inspires Oga to find Tojo. Later, baby Beel starts feeling sick and it appears that he's come down with a cold. However, Oga's tattoo mysteriously vanishes, and later that night Beel disappears. Hilda kicks Oga out of the house and leaves to find help in the demon world. Oga goes off to find Beel, but runs into Tojou, who, as it turns out, has Beel on his back. After a scuffle, Tojo comes out as the victor, and asks Oga to challenge him again sometime. Once Oga gets home, he is in a surprise to find Hilda there waiting for him, with a strange demon doctor known as Dr. Furucas, and his assistant, Lamia. Furucas reveals that the cold is actually Beel's way of coping with a rise of his power, by keeping the energy within himself, and that he cut off the link between him and Oga to protect him. Lamia then injects Oga with a drug that allows him to re-establish the connection with Beel. Oga then goes to confront Tojo with the aid of the three other Tohoshinki. Once he makes it to Tojo, Beel returns to normal and goes back to Oga. Tojo and Oga then have one final duel in which Oga is victorious, but baby Beel's influx of power causes him to destroy Ishiyama.
     Due to their school being destroyed, the students of Ishiyama can only go to their sister school, Saint Ishiyama. Initially, they are constantly looked down on, but after a volleyball match against the Six Knights, the negative views towards them stop. During the volleyball match, Oga's demonic power is displayed due to a fight with someone who had a grudge on him, though it is covered up by the Saint Ishiyama president who claimed that it is just a trick. The president turned out to be a demon himself.
-    A new teacher soon arrives to replace the one teaching the Ishiyama group, knocking out both Oga and Tojo on the same day before carrying them to the classroom. The teacher, Zenjiro Saotome, later appears when Oga, Hilda and Aoi are attacked by Hecadoth, and puts up a fight against the demon. Later, Naga and Graphel, the other two demons who came to the world in search of Oga, appear before Saotome, but Saotome uses his Spellmaster spell to attack them. After realizing that he is a Spellmaster who is too powerful for them to win against, Naga uses a teleporting jewel to take the three demons back to Demon World. After that, Saotome, the spellmaster, although having Oga refuse, ends up training him. After successfully powering up, Oga confronts the demons and defeats them. He later battles with other human-demon contractors and is brutally defeated before eventually gaining more strength and defeating the strongest contractor. The last chapter displays him returning from an adventure to the demon world with another baby on his shoulder."""}
+    A new teacher soon arrives to replace the one teaching the Ishiyama group, knocking out both Oga and Tojo on the same day before carrying them to the classroom. The teacher, Zenjiro Saotome, later appears when Oga, Hilda and Aoi are attacked by Hecadoth, and puts up a fight against the demon. Later, Naga and Graphel, the other two demons who came to the world in search of Oga, appear before Saotome, but Saotome uses his Spellmaster spell to attack them. After realizing that he is a Spellmaster who is too powerful for them to win against, Naga uses a teleporting jewel to take the three demons back to Demon World. After that, Saotome, the spellmaster, although having Oga refuse, ends up training him. After successfully powering up, Oga confronts the demons and defeats them. He later battles with other human-demon contractors and is brutally defeated before eventually gaining more strength and defeating the strongest contractor. The last chapter displays him returning from an adventure to the demon world with another baby on his shoulder."""
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """,
+    '':""" """}
 
   def book(): 
     return {'three body problem':"""During the Cultural Revolution, Ye Wenjie, an astrophysics graduate from Tsinghua University, witnesses her father beaten to death during a struggle session by Red Guards from Tsinghua High School supported by Ye's mother and younger sister. Ye is officially branded a traitor and is forced to join a labor brigade in Inner Mongolia, where she befriends a government journalist who enlists Ye's help in transcribing a letter to the government detailing policy suggestions based on the book Silent Spring, which she read. However, Ye is betrayed by the journalist and sentenced to prison after the letter is viewed as seditious by the government. In prison, she is recruited by Yang Weining and Lei Zhicheng, two military physicists working under Red Coast, a secret Chinese initiative to use high powered radio waves to damage spy satellites, who require Ye's skills in physics. Ye discovers the possibility of amplifying outgoing radio waves by using micro-wave cavities within the sun and sends an interstellar message. Eight years later, by now in a loveless marriage with Yang, Ye receives a message from a concerned alien pacifist from the planet Trisolaris, warning her not to respond or else the inhabitants of Trisolaris will locate and invade Earth. The alien proceeds to describe Trisolaris's environmental conditions and societal history. Ye, who is disillusioned by the political chaos and has come to despise humankind, responds anyway, inviting them to come to Earth to settle its problems. Ye murders her husband, Yang, along with Lei to keep the alien message a secret.
