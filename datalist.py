@@ -1,8 +1,5 @@
 # Lists of multichoice answer
-class InfoList:
-  def __init__(self, category):
-    return category()
-
+class DataList:
   def anime():
     return ["bleach", "sailor moon","one punch man",
     "dragon ball super","kill la kill","mob psycho 100",
@@ -19,7 +16,9 @@ class InfoList:
     "gurren lagann","gintama","assassination classroom",
     "cowboy bebop","tokyo ghoul","fairy tail","no game no life",
     "one peice","steins gate","attack on titan","death note",
-    "boku no hero academia","tanya the evil""parasyte, dr stone, beyblade, yugioh, megasxlr, cow n chicken, i am weasel, ed edd n eddy, supa strikas, ai football, pokemon, teen titans, batman, superman, knd, kick buttowski, ben 10, ppg, "]
+    "boku no hero academia","tanya the evil", "parasyte"
+    "dr stone","yu gi oh"
+    ]
 
   def book():
     return ["three body problem", "harry potter and the philosophers stone",
@@ -29,6 +28,11 @@ class InfoList:
     "watchmen","invisible man","all the kings men"
     ] 
 
+  def cartoon():
+    return ["beyblade","megasxlr","cow n chicken", "i am weasel", "ed edd n eddy", 
+    "supa strikas", "ai football", "pokemon", "teen titans", "batman", "superman",
+    "knd", "kick buttowski", "ben 10", "ppg"
+    ]
 
 
 
