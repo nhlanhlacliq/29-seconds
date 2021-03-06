@@ -28,6 +28,7 @@ from PIL import Image
 import string
 from os import sys
 from score import Score
+from difficulty import Difficulty
 
 """'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
@@ -38,7 +39,7 @@ def countdown_timer(time):
     sleep(1)
 
 """Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
-def generate_wordcloud(time_to_answer, category, question, difficulty_level):
+def generate_wordcloud(time_limit, category, question, difficulty_level):
   # 
   words_freq_dist = {}
   # plt.figure(2)
@@ -92,12 +93,12 @@ def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   plt.pause(0.001)
 
   # countdown timer
-  countdown_timer(time_to_answer)
+  countdown_timer(time_limit)
   plt.close(1)
   print("Time's up!")
 
 """Gets user category choice. returns category, with a random question and answer from that category """
-def setup() -> set:
+def create_question_object() -> set:
   # Get user catagory choice
   while True:
     category_choice = input("""
@@ -115,13 +116,16 @@ def setup() -> set:
   chosen_category = categories_menu[int(category_choice)]
 
   # getattr essentially calls the menthod using the chosen category(they have the same name)
-  category_dict_method_to_call = getattr(InfoDatabase, chosen_category)
-  category_dict = category_dict_method_to_call()
-  choice_from_category_dict = random.choice(list(category_dict.items()))
-  question = choice_from_category_dict[1]
-  actual_answer = choice_from_category_dict[0]
+  category = getattr(InfoDatabase, chosen_category)
+  category_dict = category()
 
-  return chosen_category, question, actual_answer #int(difficulty_level)
+  # choice from category is a tuple.. ("naruto","initially set in konoha village what what")
+  choice_from_category = random.choice(list(category_dict.items()))
+
+  actual_answer = choice_from_category[0]
+  question = choice_from_category[1]
+
+  return chosen_category, question, actual_answer
 
 """Displays choices"""
 def show_options(chosen_category, actual_answer):
@@ -163,43 +167,44 @@ def get_answer(actual_answer, choices_menu, score, category):
   else:
     print("Hmm..")
     sleep(2)
-    print(f"Correct answer: {string.capwords(actual_answer)}")
+    # print(f"Correct answer: {string.capwords(actual_answer)}")
+    print(f"Correct answer: XXXXXXXXXX")
     print("Game over")
     print(f"Score: {score.get_score()}")
     sys.exit(1)
 
-"""get time limit for questions"""
-def get_time_to_answer():
+
+
+"""Get difficulty mode from user. Modes are just combinations of different time limits and difficulty levels."""
+def get_difficulty_mode() -> int:
+  print("Choose Difficulty: \n")
   while True:
-    time_to_answer = input("Time limit: \n> ")
-    if time_to_answer.isdigit() and 0 < int(time_to_answer) < 30:
+    difficulty_mode = input("1. Dynamic Difficulty - All's fair in love and war. \n2. Easy but Hard - Let's Dance. \n3. Custom Difficulty.\n> ")
+    if difficulty_mode.isdigit() and 0 < int(difficulty_mode) < 4:
       break
     else:
-      print("Try again please. (1 - 29)")
-  return int(time_to_answer)
-
-"""get game difficulty level"""
-def get_difficulty_level():
-  while True:
-    difficulty_level = input("Difficulty level (0 - 5):\n> ")
-    if difficulty_level.isdigit() and -1 < int(difficulty_level) < 6:
-      break
-    else:
-      print("\nTry again (0 - 5).\n")
-  return int(difficulty_level)
-
+      print("\nIncorrect input (1 - 3).\n")
+  difficulty_mode = int(difficulty_mode)
+  return difficulty_mode
 
 """main method"""
-def main(time_to_answer, difficulty, score):
-  chosen_category, question, actual_answer = setup()
-  generate_wordcloud(time_to_answer, chosen_category, question, difficulty)
+def main(difficulty, score):
+  # get category, question and answer
+  chosen_category, question, actual_answer = create_question_object()
+  # get time limit and difficulty level from difficulty object
+  time_limit = difficulty.get_time_limit()
+  difficulty_level = difficulty.get_difficulty()
+  # generate word cloud
+  generate_wordcloud(time_limit, chosen_category, question, difficulty_level)
+
   choices_menu = show_options(chosen_category, actual_answer)
   get_answer(actual_answer, choices_menu, score, chosen_category)
   print(f"Score: {score.get_score()}")
 
 if __name__ == '__main__':
-  time_to_answer = get_time_to_answer()
-  difficulty = get_difficulty_level()
+  mode = get_difficulty_mode()
+  difficulty = Difficulty(mode)
   score = Score()
   while True:
-    main(time_to_answer, difficulty, score)
+    difficulty.update(mode)
+    main(difficulty, score)
