@@ -49,9 +49,11 @@ def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   words_freq_dist = nltk.FreqDist(words_in_question)
 
   # remove {difficulty level} most counted words, add to clues list
+  # not yet working.. returns int of word counts instead of actual word
   clues = []
   for i in range(difficulty_level):
-    clues.append(words_freq_dist.pop(words_freq_dist.max()))
+    clue = words_freq_dist.pop(words_freq_dist.max())
+    clues.append(clue)
   # print(f"These would be the clues {clues}")
 
   difficulty_adjusted_question = ''
