@@ -27,6 +27,12 @@ from PIL import Image
 
 """'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
+"""Countdown timer"""
+def countdown_timer(time):
+  for i in range(time):
+    print(time - i)
+    sleep(1)
+
 """Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
 def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   # 
@@ -78,9 +84,11 @@ def generate_wordcloud(time_to_answer, category, question, difficulty_level):
   # wc_image = Image.open('WC.png')
   # wc_image.show()
   plt.pause(0.001)
-  sleep(time_to_answer)
+
+  # countdown timer
+  countdown_timer(time_to_answer)
   plt.close(1)
-  print("Time's up")
+  print("Time's up!")
 
 """Gets user category choice. returns category, with a random question and answer from that category """
 def setup() -> set:
@@ -129,6 +137,7 @@ def get_answer(actual_answer):
 def main(time_to_answer):
   chosen_category, question, actual_answer, difficulty_level = setup()
   generate_wordcloud(time_to_answer, chosen_category, question, difficulty_level)
+  show_options(chosen_category)
 
 if __name__ == '__main__':
-  main(3)
+  main(10)
