@@ -14,7 +14,7 @@ class Summary():
   def set_category(self):
     # Get user catagory choice
     while True:
-      category_num = input("""Choose category:
+      category_num = input("""\nChoose category:
 
       1. Anime
       2. Books
