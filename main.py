@@ -26,6 +26,8 @@ import nltk
 from nltk.corpus import stopwords
 from PIL import Image
 import string
+from os import sys
+from score import Score
 
 """'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
 
@@ -111,12 +113,15 @@ def setup() -> set:
   chosen_category = categories_menu[int(category_choice)]
 
   # Get difficulty level
+  # deprecated
+  """
   while True:
     difficulty_level = input("Difficulty level (0 - 4):\n> ")
     if difficulty_level.isdigit() and -1 < int(category_choice) < 5:
       break
     else:
       print("\nTry again (0 - 4).\n")
+  """
 
   # getattr essentially calls the menthod using the chosen category(they have the same name)
   category_dict_method_to_call = getattr(InfoDatabase, chosen_category)
@@ -125,7 +130,7 @@ def setup() -> set:
   question = choice_from_category_dict[1]
   actual_answer = choice_from_category_dict[0]
 
-  return chosen_category, question, actual_answer, int(difficulty_level)
+  return chosen_category, question, actual_answer #int(difficulty_level)
 
 """Displays choices"""
 def show_options(chosen_category, actual_answer):
@@ -150,7 +155,7 @@ def show_options(chosen_category, actual_answer):
   return choices_menu
 
 """Gets and compares user answer to actual answer"""
-def get_answer(actual_answer, choices_menu):
+def get_answer(actual_answer, choices_menu, score):
   while True:
     user_answer = input("\n> ")
     if user_answer.isdigit() and 0 < int(user_answer) < len(choices_menu) + 1:
@@ -159,16 +164,26 @@ def get_answer(actual_answer, choices_menu):
       print("\nTry again\n")
   if choices_menu[int(user_answer)] == actual_answer:
     print("CORRECTO!")
+    score.add_point()
   else:
-    print("LOL")
+    print("Hmm..")
+    sleep(2)
+    print("Psych!")
+    print("Game over")
+    print(f"Score: {score.get_score()}")
+    sys.exit(1)
 
 """main method"""
-def main(time_to_answer):
-  chosen_category, question, actual_answer, difficulty_level = setup()
-  generate_wordcloud(time_to_answer, chosen_category, question, difficulty_level)
+def main(time_to_answer, difficulty, score):
+  chosen_category, question, actual_answer = setup()
+  generate_wordcloud(time_to_answer, chosen_category, question, difficulty)
   choices_menu = show_options(chosen_category, actual_answer)
-  get_answer(actual_answer, choices_menu)
+  get_answer(actual_answer, choices_menu, score)
+  print(f"Score: {score.get_score()}")
 
 if __name__ == '__main__':
+  time_to_answer = 5
+  difficulty = 4
+  score = Score()
   while True:
-    main(5)
+    main(time_to_answer, difficulty, score)
