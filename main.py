@@ -30,7 +30,7 @@ from os import sys
 from score import Score
 from difficulty import Difficulty
 
-"""'plot', 'synopsis', 'text' and 'question' are all the same thing. basically the description text of the show/book/lyrics"""
+"""'plot', 'synopsis', 'text' and 'summary' are all the same thing. basically the description text of the show/book/lyrics"""
 
 """Countdown timer"""
 def countdown_timer(time):
@@ -38,59 +38,52 @@ def countdown_timer(time):
     print(time - i)
     sleep(1)
 
-"""Generates a wordcloud from a chosen category. the question contains the synopsis which the WC is generated from"""
-def generate_wordcloud(time_limit, category, question, difficulty_level):
-  # 
-  words_freq_dist = {}
-  # plt.figure(2)
+"""Generates and shows a wordcloud from a chosen category. 
+The summary contains the synopsis which the WC is generated from"""
+def show_wordcloud(time_limit, category, summary, difficulty_level):
+  # stop words ("and", "the", "we", etc.)
   stops = set(stopwords.words('english')) #Set used for speed
   more_stops= STOPWORDS
   # will need this for plotting too
-  words_in_question = [word for word in nltk.word_tokenize(question) if ((word not in stops) and (word not in more_stops))]
-  words_freq_dist = nltk.FreqDist(words_in_question)
+  # Make list of words in the summary. dont add word if its a stop word..
+  words_in_summary = [word for word in nltk.word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
+  words_freq_dist = nltk.FreqDist(words_in_summary)
 
   # remove {difficulty level} most counted words, add to clues list
-  # not yet working.. returns int of word counts instead of actual word
+  # clues not yet working.. returns int of word counts instead of actual word
   clues = []
   for i in range(difficulty_level):
     clue = words_freq_dist.pop(words_freq_dist.max())
     clues.append(clue)
   # print(f"These would be the clues {clues}")
 
-  difficulty_adjusted_question = ''
+  # adjusted summary is summary without x most repeated words 
+  adjusted_summary = ''
   for word in words_freq_dist.keys():
-    difficulty_adjusted_question += word + ' '
+    adjusted_summary += word + ' '
 
-  # words_freq_dist.pprint()
-  # print(difficulty_adjusted_question)
-  # more_stops.update(['Lil Wayne', 'Static Major', 'Lollipop', 'Lil', 'Wayne', 'Static', 'Major', 'Tanya',
-                    # 'trisolaris','trisolaran','moby','dick','macbeth','othello','harry','potter','hermione','voldemort',
-                    # 'hobbit','saitama','Goku','Vegeta','Frieza','Dragon Balls','Gatsby','','',])
-
+  # generate wordcloud from adjusted summary
   wc_rand_state = random.randint(7, 9)
   wc = WordCloud(max_words=500,relative_scaling=0.5,
                 background_color='black',stopwords=more_stops,
                 margin=2,random_state=wc_rand_state,contour_width=0.5,
                 contour_color='white', colormap='Accent')
-  
-  wc.generate(difficulty_adjusted_question)
-  # print(wc)
+  wc.generate(adjusted_summary)
   colors = wc.to_array()
 
-  # plotting frequency distribution of words in question synopsis.. not really needed. I just wanted to see..
+  """
+  # plotting frequency distribution of words in summary synopsis.. not really needed. I just wanted to see..
   # words_freq_dist.plot(15, linestyle='-', title="LOL words")
   # plt.legend()
+  """
 
+  # show wordcloud 
   plt.ion()
   plt.figure()
-  plt.title(f"Which {category} is this?\n",
-  fontsize=15, color='black')
+  plt.title(f"Which {category} is this?\n", fontsize=20, color='black')
   plt.imshow(colors, interpolation="bilinear")
   plt.axis('off')
   plt.show()
-  # plt.savefig('WC.png')
-  # wc_image = Image.open('WC.png')
-  # wc_image.show()
   plt.pause(0.001)
 
   # countdown timer
@@ -98,8 +91,8 @@ def generate_wordcloud(time_limit, category, question, difficulty_level):
   plt.close(1)
   print("Time's up!")
 
-"""Gets user category choice. returns category, with a random question and answer from that category """
-def create_question_object() -> set:
+"""Gets user category choice. returns category, with a random summary and answer from that category """
+def create_summary():
   # Get user catagory choice
   while True:
     category_choice = input("""
@@ -124,9 +117,9 @@ def create_question_object() -> set:
   choice_from_category = random.choice(list(category_dict.items()))
 
   actual_answer = choice_from_category[0]
-  question = choice_from_category[1]
+  summary = choice_from_category[1]
 
-  return chosen_category, question, actual_answer
+  return chosen_category, summary, actual_answer
 
 """Displays choices"""
 def show_options(chosen_category, actual_answer):
@@ -190,13 +183,13 @@ def get_difficulty_mode() -> int:
 
 """main method"""
 def main(difficulty, score):
-  # get category, question and answer
-  chosen_category, question, actual_answer = create_question_object()
+  # get category, summary and answer
+  chosen_category, summary, actual_answer = create_summary()
   # get time limit and difficulty level from difficulty object
   time_limit = difficulty.get_time_limit()
   difficulty_level = difficulty.get_difficulty()
   # generate word cloud
-  generate_wordcloud(time_limit, chosen_category, question, difficulty_level)
+  show_wordcloud(time_limit, chosen_category, summary, difficulty_level)
 
   choices_menu = show_options(chosen_category, actual_answer)
   get_answer(actual_answer, choices_menu, score, chosen_category)
