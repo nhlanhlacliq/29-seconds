@@ -12,8 +12,6 @@ from datalist import DataList
 from summary import Summary
 from score import Score
 
-"""'plot', 'synopsis', 'text' and 'summary' are all the same thing. basically the description text of the show/book/lyrics"""
-
 """Countdown timer"""
 def countdown_timer(time):
   for i in range(time):
