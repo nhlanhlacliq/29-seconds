@@ -127,7 +127,6 @@ class Game():
     print("Choose Difficulty: \n")
     while True:
       difficulty_mode = input("1. Dynamic Difficulty - All's fair in love and war. \n2. Easy but Hard - Let's Dance. \n3. Custom Difficulty.\n> ")
-      return difficulty_mode
       if difficulty_mode.isdigit() and 0 < int(difficulty_mode) < 4:
         break
       else:

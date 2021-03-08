@@ -1,7 +1,8 @@
+from website import create_app
 from flask import Flask, render_template, request, url_for, Response
 from app import Game
 
-app = Flask(__name__)
+app = create_app()
 
 difficulty_mode = 0
 @app.route('/', methods=['POST', 'GET'])
