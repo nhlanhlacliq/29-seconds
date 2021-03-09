@@ -5,7 +5,7 @@ views = Blueprint('views', __name__)
 # Using difficulty select screen as home page
 @views.route('/')
 def difficulty_select():
-    return render_template("difficulty_select.html")
+    return render_template("new_diff.html")
 
 @views.route('/category')
 def category_select():
