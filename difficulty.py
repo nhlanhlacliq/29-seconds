@@ -1,4 +1,4 @@
-import random
+import random #Don't delete..
 
 class Difficulty():
   time_limit = 0
