@@ -59,6 +59,8 @@ class Difficulty():
 
   # This method is necesarry to have the dynamic difficulty work (mode == 1 is dynamic difficulty option)
   # It essentially creates the difficulty object again with new levels every time its called
+
+  # might not need this as flask rerun's the function... hmmmm.. we'll see
   def update(self, mode):
     if mode == 1:
       self.__init__(mode)
