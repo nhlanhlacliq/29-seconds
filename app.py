@@ -147,9 +147,8 @@ class Game():
     self.check_answer(questions_menu, summary_object, score_object)
     print(f"Score: {score_object.get_score()}")
 
-  """game started here"""
+  """game loop"""
   def run(self):
-    # return "WTF"
     mode = self.get_difficulty_mode()
     difficulty_object = Difficulty(mode)
     score_object = Score()
