@@ -20,7 +20,7 @@ class DataList:
     "dr stone","yu gi oh"
     ]
 
-  def book():
+  def books():
     return ["three body problem", "harry potter and the philosophers stone",
     "othello","macbeth","moby dick","1984","the great gatsby",
     "to kill a mockingbird","the lord of the rings","the alchemist",
@@ -28,7 +28,7 @@ class DataList:
     "watchmen","invisible man","all the kings men"
     ] 
 
-  def cartoon():
+  def cartoons():
     return ["beyblade","megasxlr","cow n chicken", "i am weasel", "ed edd n eddy", 
     "supa strikas", "ai football", "pokemon", "teen titans", "batman", "superman",
     "knd", "kick buttowski", "ben 10", "ppg"
