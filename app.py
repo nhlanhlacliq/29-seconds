@@ -8,7 +8,7 @@ from wordcloud import WordCloud, STOPWORDS
 import random
 import string
 from difficulty import Difficulty
-from datalist import DataList
+from database import Database
 from summary import Summary
 from score import Score
 
@@ -76,8 +76,9 @@ class Game():
     category = summary_object.get_category()
     answer = summary_object.get_answer()
     # getattr essentially calls the method using the category(they have the same name)
-    category_list = getattr(DataList, category)
+    category_list = getattr(Database, category)
     category_list = category_list()
+    category_list = list(category_list.keys())
     # add actual answer to questions. add 3 random questions from category
     questions = []
     questions.append(answer)
