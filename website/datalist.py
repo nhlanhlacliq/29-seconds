@@ -29,9 +29,10 @@ class DataList:
     ] 
 
   def cartoons():
-    return ["beyblade","megasxlr","cow n chicken", "i am weasel", "ed edd n eddy", 
-    "supa strikas", "ai football", "pokemon", "teen titans", "batman", "superman",
-    "knd", "kick buttowski", "ben 10", "ppg"
+    return ["beyblade","megas xlr","cow and chicken", "i am weasel", "ed edd n eddy", 
+    "supa strikas", "ai football ggo", "pokemon", "teen titans", "batman", "superman",
+    "kids next door", "kick buttowski: surburban devil", "ben 10", "power puff girls",
+    "dexter's lab "
     ]
 
 
