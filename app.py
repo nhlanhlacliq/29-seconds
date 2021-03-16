@@ -135,20 +135,47 @@ class Game():
     difficulty_mode = int(difficulty_mode)
     return difficulty_mode
 
+  """Adding a new show"""
+  def add_show(self):
+    while True:
+      databaselist = [category for category in dir(Database) if not category.startswith("__")]
+      category_choices = {}
+      print("Category to add in:\n")
+      for i, category in enumerate(databaselist):
+        print(f"{i+1}. {category.upper()}")
+        category_choices[i+1] = category
+
+      choice = input("\n> ")
+      if choice.isdigit() and 0 < int(choice) < i+1:
+        break
+      else:   
+        print("\nIncorrect input\n")
+
+      choice = int(choice)
+      chosen_category = category_choices[choice]
+      name = input(f"Enter {chosen_category} name:\n> ")
+      desc = input(f"Enter {name}'s summary/plot:\n> ")
+      print(chosen_category)
+
+      chosen_category = setattr(Database)
+      Database.chosen_category()[name] = desc
+      print(f"{name} added!")
+      self.main_menu()
+
   """main menu. shown first"""
   def main_menu(self):
     while True:
-      print("1. Play \n2. Add new show")
+      print("1. Play \n2. Add new show\n")
       choice = input("> ")
       if choice.isdigit() and 0 < int(choice) < 3:
         break
       else:
         print("Invalid Input")
-      choice = int(choice)
-      if choice == 1:
-        return
-      else:
-        self.add_show()
+    choice = int(choice)
+    if choice == 1:
+      return
+    elif choice == 2:
+      self.add_show()
 
   """main method"""
   def main(self, difficulty_object, score_object):
