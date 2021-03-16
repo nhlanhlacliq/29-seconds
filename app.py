@@ -135,6 +135,21 @@ class Game():
     difficulty_mode = int(difficulty_mode)
     return difficulty_mode
 
+  """main menu. shown first"""
+  def main_menu(self):
+    while True:
+      print("1. Play \n2. Add new show")
+      choice = input("> ")
+      if choice.isdigit() and 0 < int(choice) < 3:
+        break
+      else:
+        print("Invalid Input")
+      choice = int(choice)
+      if choice == 1:
+        return
+      else:
+        self.add_show()
+
   """main method"""
   def main(self, difficulty_object, score_object):
     # get category, summary and answer from summary object
@@ -150,6 +165,7 @@ class Game():
 
   """game loop"""
   def run(self):
+    self.main_menu()
     mode = self.get_difficulty_mode()
     difficulty_object = Difficulty(mode)
     score_object = Score()
