@@ -39,7 +39,9 @@ class Summary():
         category_dict = category()
 
         # get random summary from category... returns tuple.. ("naruto","initially set in konoha village what what")
-        random_answer_summary_pair = secrets.choice(list(category_dict.items()))
+        category_list = list(category_dict.items())
+        secrets.shuffle(category_list)
+        random_answer_summary_pair = secrets.choice(category_list)
 
         self.answer = random_answer_summary_pair[0]
         self.summary = random_answer_summary_pair[1]
