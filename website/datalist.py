@@ -32,7 +32,7 @@ class DataList:
     return ["beyblade","megas xlr","cow and chicken", "i am weasel", "ed edd n eddy", 
     "supa strikas", "ai football ggo", "pokemon", "teen titans", "batman", "superman",
     "kids next door", "kick buttowski: surburban devil", "ben 10", "power puff girls",
-    "dexter's lab "
+    "dexter's lab"
     ]
 
 
