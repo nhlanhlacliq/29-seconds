@@ -157,10 +157,13 @@ class Game():
       desc = input(f"Enter {name}'s summary/plot:\n> ")
       print(chosen_category)
 
-      chosen_category = setattr(Database)
-      Database.chosen_category()[name] = desc
+      category = getattr(Database, chosen_category)
+      category_dict = category()
+
+      #   chosen_category = setattr(chosen_category, category_dict[name], desc)
+      category_dict[name] = desc
       print(f"{name} added!")
-      self.main_menu()
+      return
 
   """main menu. shown first"""
   def main_menu(self):
@@ -172,6 +175,7 @@ class Game():
       else:
         print("Invalid Input")
     choice = int(choice)
+    print(choice)
     if choice == 1:
       return
     elif choice == 2:
