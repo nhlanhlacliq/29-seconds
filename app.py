@@ -110,6 +110,8 @@ class Game():
     answer = summary_object.get_answer()
     # if correct, add point
     if questions_menu[int(user_answer)] == answer:
+      print("Hmm..")
+      sleep(1)
       print("CORRECTO!")
       score_object.add_point()
       if category == 'book':
@@ -163,7 +165,7 @@ class Game():
       #   chosen_category = setattr(chosen_category, category_dict[name], desc)
       category_dict[name] = desc
       print(f"{name} added!")
-      return
+      return self.main_menu()
 
   """main menu. shown first"""
   def main_menu(self):
@@ -179,7 +181,7 @@ class Game():
     if choice == 1:
       return
     elif choice == 2:
-      self.add_show()
+      return self.add_show()
 
   """main method"""
   def main(self, difficulty_object, score_object):
