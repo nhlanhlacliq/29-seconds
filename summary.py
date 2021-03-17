@@ -1,5 +1,6 @@
 from database import Database
 import secrets
+import random
 
 class Summary():
     category = None
@@ -40,7 +41,7 @@ class Summary():
 
         # get random summary from category... returns tuple.. ("naruto","initially set in konoha village what what")
         category_list = list(category_dict.items())
-        secrets.shuffle(category_list)
+        random.shuffle(category_list)
         random_answer_summary_pair = secrets.choice(category_list)
 
         self.answer = random_answer_summary_pair[0]
