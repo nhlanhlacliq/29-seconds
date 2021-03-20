@@ -33,11 +33,12 @@ class Game():
     # stop words ("and", "the", "we", etc.)
     stops = set(stopwords.words('english')) #Set used for speed
     more_stops= STOPWORDS
-    
+
     # will need this for plotting too
     # Make list of words in the summary. dont add word if its a stop word..
     words_in_summary = [word for word in word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
     words_freq_dist = FreqDist(words_in_summary)
+    
     # remove x = {difficulty level} most repeated words, add to clues list
     # clues not yet working.. returns int of word counts instead of actual word
     clues = []
