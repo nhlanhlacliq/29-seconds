@@ -38,13 +38,14 @@ class Game():
     # Make list of words in the summary. dont add word if its a stop word..
     words_in_summary = [word for word in word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
     words_freq_dist = FreqDist(words_in_summary)
-    
+
     # remove x = {difficulty level} most repeated words, add to clues list
     # clues not yet working.. returns int of word counts instead of actual word
     clues = []
     for i in range(difficulty_level):
       clue = words_freq_dist.pop(words_freq_dist.max())
       clues.append(clue)
+      
     # print(f"These would be the clues {clues}")
     # adjusted summary is summary without x most repeated words 
     adjusted_summary = ''
