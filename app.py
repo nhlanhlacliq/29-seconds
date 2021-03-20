@@ -29,10 +29,11 @@ class Game():
     # get category and summary from summary object
     category = summary_object.get_category()
     summary = summary_object.get_summary()
-    
+
     # stop words ("and", "the", "we", etc.)
     stops = set(stopwords.words('english')) #Set used for speed
     more_stops= STOPWORDS
+    
     # will need this for plotting too
     # Make list of words in the summary. dont add word if its a stop word..
     words_in_summary = [word for word in word_tokenize(summary) if ((word not in stops) and (word not in more_stops))]
