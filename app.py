@@ -25,10 +25,11 @@ class Game():
     # get time limit and difficulty level from difficulty object
     time_limit = difficulty_object.get_time_limit()
     difficulty_level = difficulty_object.get_difficulty()
-    
+
     # get category and summary from summary object
     category = summary_object.get_category()
     summary = summary_object.get_summary()
+    
     # stop words ("and", "the", "we", etc.)
     stops = set(stopwords.words('english')) #Set used for speed
     more_stops= STOPWORDS
