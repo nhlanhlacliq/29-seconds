@@ -83,8 +83,7 @@ class Game():
     # getattr essentially calls the method using the category(they have the same name)
     category_list = getattr(Database, category)
     category_list = category_list()
-    category_list = list(category_list.keys())
-    
+    category_list = list(category_list.keys())   
     # add actual answer to questions. add 3 random questions from category
     questions = []
     questions.append(answer)
