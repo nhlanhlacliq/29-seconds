@@ -84,6 +84,7 @@ class Game():
     category_list = getattr(Database, category)
     category_list = category_list()
     category_list = list(category_list.keys()) 
+    
     # add actual answer to questions. add 3 random questions from category
     questions = []
     questions.append(answer)
