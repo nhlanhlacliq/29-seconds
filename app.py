@@ -142,7 +142,6 @@ class Game():
     difficulty_mode = int(difficulty_mode)
     return difficulty_mode
 
-
   """Adding a new show"""
   def add_show(self):
     while True:
