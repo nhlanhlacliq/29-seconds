@@ -24,4 +24,5 @@ while (isSunk == false) {
 }
 var userStats =
   guesses + " guesses to win," + " thus accuracy was: " + 3 / guesses;
-alert("User stats");
+
+alert(userStats);
