@@ -6,7 +6,7 @@ var hits = 0;
 var guesses = 0;
 var isSunk = false;
 
-while (isSunk == false) {
+while (!isSunk) {
   guess = prompt("Ready, aim, fire! (enter a number 0-6):");
   if (guess < 0 || guess > 6) {
     alert("Invalid guess");
@@ -14,15 +14,22 @@ while (isSunk == false) {
     guesses++;
     if (guess == location1 || guess == location2 || guess == location3) {
       hits++;
-      alert("HM!");
+      alert("HIT!");
       if (hits == 3) {
         isSunk = true;
         alert("You sunk my ship!");
       }
+    } else {
+      alert("MISS");
     }
   }
 }
 var userStats =
-  guesses + " guesses to win," + " thus accuracy was: " + 3 / guesses;
+  "You took " +
+  guesses +
+  " guesses to win." +
+  " Accuracy: " +
+  Math.round((3 / guesses) * 100, 2) +
+  "%";
 
 alert(userStats);
