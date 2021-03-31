@@ -6,3 +6,5 @@ nltk
 wordcloud
 # random 
 # string
+# fastapi
+# hypercorn
