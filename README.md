@@ -13,4 +13,6 @@ TO ADD (all with sub genres)
 
 Reactjs ?
 
-Use api to send data
+Use api to send data to front end..
+
+Use wikipedia api for game data..
