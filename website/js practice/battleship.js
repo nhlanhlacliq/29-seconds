@@ -24,7 +24,6 @@ while (!isSunk) {
     }
   }
 }
-
 var userStats =
   "You took " +
   guesses +
