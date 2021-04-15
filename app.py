@@ -212,7 +212,6 @@ class Game():
       self.main(difficulty_object, score_object)
 
 
-
 if __name__ == '__main__':
   game = Game()
   game.run()
