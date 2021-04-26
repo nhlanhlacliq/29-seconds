@@ -12,4 +12,4 @@ def welcome():
 @app.route('/card')
 def card_view():
     card = db[0]
-    return render_template("card.html", card=card)
+    return render_template("card_view.html", card=card)
