@@ -13,8 +13,16 @@
         <a href="http://pluralsight.com">Pluralsight</a>.
     </p>
     <img src="https://objects.ruanbekker.com/assets/images/python-flask.png">
-    <p>
-        {{message}}
-    </p>
+    <h1>Flash Cards</h1>
+    <ul>
+        {% for card in cards %}
+            <li>
+                <a href="{{ url_for('card_view', index=loop.index0) }}">
+                    {{ card.question }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    
 </body>
 </html>
