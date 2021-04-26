@@ -10,6 +10,7 @@ def welcome():
     return render_template("welcome.html", 
                             cards = db)
 
+
 @app.route('/card/<int:index>')
 def card_view(index):
     try:
@@ -18,5 +19,17 @@ def card_view(index):
                                 card=card, 
                                 index=index, 
                                 max_index=len(db)-1)
+    except IndexError:
+        abort(404)
+
+
+@app.route('/api/card/')
+def api_card_list():
+    return db
+
+@app.route('/api/card/<int:index>')
+def api_card_detail(index):
+    try:
+        return db[index]
     except IndexError:
         abort(404)
