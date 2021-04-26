@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, abort
 
 from model import db 
 
@@ -9,7 +9,10 @@ app = Flask(__name__)
 def welcome():
     return render_template("welcome.html", message="Here's a message from the view.")
 
-@app.route('/card')
-def card_view():
-    card = db[0]
-    return render_template("card_view.html", card=card)
+@app.route('/card/<int:index>')
+def card_view(index):
+    try:
+        card = db[index]
+        return render_template("card_view.html", card=card)
+    except IndexError:
+        abort(404)
