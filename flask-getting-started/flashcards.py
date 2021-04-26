@@ -32,3 +32,9 @@ def api_card_detail(index):
         return db[index]
     except IndexError:
         abort(404)
+
+@app('/add_card/')
+def add_card():
+    return render_template("add_card.html")
+
+
