@@ -1,5 +1,4 @@
-from flask import Flask, render_template, abort, url_for
-
+from flask import Flask, render_template, abort, url_for, jsonify
 from model import db 
 
 app = Flask(__name__)
@@ -25,7 +24,7 @@ def card_view(index):
 
 @app.route('/api/card/')
 def api_card_list():
-    return db
+    return jsonify(db)
 
 @app.route('/api/card/<int:index>')
 def api_card_detail(index):
