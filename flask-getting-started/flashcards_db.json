@@ -1,18 +1,1 @@
-[
-  {
-    "question": "Hello (morning)",
-    "answer": "Ohayou gozaimas'"
-  },
-  {
-    "question": "Hello (afternoon)",
-    "answer": "Konnichiwa"
-  },
-  {
-    "question": "Ate",
-    "answer": "tabemash'ta"
-  },
-  {
-    "question": "Going to work",
-    "answer": "Shigoto shimas"
-  }
-]
+[{"question": "Ate", "answer": "tabemash'ta"}, {"question": "Going to work", "answer": "Shigoto shimas"}, {"question": "want to drink", "answer": "nomitai des"}, {"question": "want to spend", "answer": "Sugoshtai"}]

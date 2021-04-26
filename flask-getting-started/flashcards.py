@@ -45,4 +45,15 @@ def add_card():
     else:
         return render_template("add_card.html")
 
-
+# Write a view showing the remove card template.
+@app.route('/remove_card/<int:index>', methods=["GET", "POST"])
+def remove_card(index):
+    try:
+        if request.method == "POST":
+            del db[index]
+            save_db()
+            return redirect(url_for('welcome'))
+        else:
+            return render_template('remove_card.html', card=db[index])
+    except IndexError:
+        abort(404)
