@@ -9,6 +9,11 @@
 <body>
     <h1>Flash Card</h1>
     Question : {{ card.question }} <br>
-    Answer : {{ card.answer }}    
+    Answer : {{ card.answer }}
+    <p>
+        <button>
+            <a href="{{ url_for('card_view', index = index + 1) }}">Next Card</a>
+        </button>
+    </p>    
 </body>
 </html>

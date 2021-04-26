@@ -13,6 +13,6 @@ def welcome():
 def card_view(index):
     try:
         card = db[index]
-        return render_template("card_view.html", card=card)
+        return render_template("card_view.html", card=card, index=index)
     except IndexError:
         abort(404)
