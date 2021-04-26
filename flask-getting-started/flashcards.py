@@ -33,7 +33,7 @@ def api_card_detail(index):
     except IndexError:
         abort(404)
 
-@app('/add_card/')
+@app.route('/add_card/')
 def add_card():
     return render_template("add_card.html")
 
