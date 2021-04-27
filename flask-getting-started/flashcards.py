@@ -57,3 +57,5 @@ def remove_card(index):
             return render_template('remove_card.html', card=db[index])
     except IndexError:
         abort(404)
+
+app.run(debug=True)
